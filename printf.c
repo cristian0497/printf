@@ -1,13 +1,14 @@
 #include "holberton.h"
+
 /**
 * _printf - prints anything like printf function
 * @format: format: %c, %s or %i
-*
 * Return: nothing.
 **/
+
 int _printf(const char *format, ...)
 {
-	int i, j;
+	int cont, x, arg_len, w;
 	char st;
 	int (*f)(char *);
 	va_list mylist;
@@ -18,23 +19,30 @@ int _printf(const char *format, ...)
 	};
 
 	va_start(mylist, format);
-	for (i = 0; format[i] != 00; i++)
+	arg_len = _strlen_esp(format);
+	for (cont = 0; cont < arg_len; cont++)
 	{
-		if (format[i] == '%' && format[i - 1] != '\\')
+		if (format[cont] == '%' && format[cont - 1] != '\\')
 		{
-			for (j = 0; opts[j].sel != 0; j++)
+			for (x = 0; opts[x].sel != 0; x++)
 			{
-				if (opts[j].sel == format[i + 1])
+				if (opts[x].sel == format[cont + 1])
 				{
-					f = opts[j].f;
+					f = opts[x].f;
 					f(va_arg(mylist, char *));
+					cont += 2;
 				}
 			}
 		}
-		if (format[i] != '%')
+		if (format[cont] != '%')
 		{
-			st = format[i];
+			st = format[cont];
 			write(1, &st, 1);
+		}
+		if (format[cont] == '\\' && format[cont + 1] == 'n')
+		{
+			w = 10;
+			write(1, &w, 1);
 		}
 	}
 	return (0);
