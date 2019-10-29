@@ -1,0 +1,41 @@
+.TH man 2 "29 Oct 2019" "0.32" "printf man page"
+.SH NAME
+.B printf
+- print what every you want.
+.SH SYNOPSIS
+printf();
+.SH DESCRIPTION
+Works like a printf function in C.
+
+%c print character
+
+%s print string
+
+%d print decimal
+
+%i print integer
+
+.B Examples
+
+Print a character
+
+printf("%c", 'C');
+
+Print a string
+
+printf("%s", string);
+
+Print an ASCII code
+
+printf("%c", 71);
+
+
+.SH OPTIONS
+.B holberton
+does not take any options. However, you can supply studentname.
+.SH SEE ALSO
+.I wirte(2), printf(2)
+.SH BUGS
+No known bugs.
+.SH AUTHORS
+Gabriel Montaño, Cristian Hurtado

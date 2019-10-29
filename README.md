@@ -1,24 +1,52 @@
-# _printf
+# printf (Hbtn)
 
-In this project we will build own version of printf.
+printf is a project developed by Holberton School students.
 
-## Authorized functions and macros
+## Installation
 
-* write
-* malloc
-* free
-* va_start
-* va_end
-* va_copy
-* va_arg
+Clone the [repository](https://github.com/cristian0497/printf.git)
 
-## Compilation
+```bash
+git clone https://github.com/cristian0497/printf.git
+```
 
-`$ gcc -Wall -Werror -Wextra -pedantic *.c`
+## Import header
+Import holberton.h file in your main.c
+```c
+#include "holberton.h"
+```
+Now you can use our printf!
 
+## Usage
+The syntax it's similar to printf function in C programming language
+
+Print character
+```
+printf("%c", 'A');
+```
+
+Print string
+```
+printf("%s", 'loap');
+```
+
+Print decimal
+```
+printf("%d", 23);
+```
+
+You also can print ASCII characters
+```
+printf("%c", 71);
+```
 
 ## Authors
 
-* **Cristian Hurtado**
+Gabriel Montaño, Cristian Hurtado
 
-* **Gabriel Montaño**
+
+## Bugs
+Did you find a bug? Feel free to email us with your report
+
+* Gabriel Montaño - 1245@holbertonschool.com
+* Cristian Hurtado - 1185@holbertonschool.com
