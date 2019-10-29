@@ -7,26 +7,34 @@
 **/
 int _printf(const char *format, ...)
 {
-	int i;
-	char *c;
+	int i, j;
+	char st;
+	int (*f)(char *);
 	va_list mylist;
+	type_data opts[] = {
+		{'c', write_char},
+		{'s', write_string},
+		{0, 0}
+	};
 
 	va_start(mylist, format);
-
 	for (i = 0; format[i] != 00; i++)
 	{
 		if (format[i] == '%' && format[i - 1] != '\\')
 		{
-			if (format[i + 1] == 'c')
+			for (j = 0; opts[j].sel != 0; j++)
 			{
-				c = va_arg(mylist, char *);
-				write_char(c);
+				if (opts[j].sel == format[i + 1])
+				{
+					f = opts[j].f;
+					f(va_arg(mylist, char *));
+				}
 			}
-			if (format[i + 1] == 's')
-			{
-				c = va_arg(mylist, char *);
-				write_string(c);
-			}
+		}
+		if (format[i] != '%')
+		{
+			st = format[i];
+			write(1, &st, 1);
 		}
 	}
 	return (0);
