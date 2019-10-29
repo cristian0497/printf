@@ -39,3 +39,26 @@ int _strlen(char *s)
 	}
 	return (i);
 }
+/**
+* _strlen_esp - show what's the char that contains %
+* @s: passed string
+*
+* Return: char that contains '%'
+**/
+int _strlen_esp(const char *s)
+{
+	int i, j;
+
+	for (i = 0; s[i] != 00; i++)
+	{
+		if (s[i] != '%')
+		{
+			j++;
+		}
+		else
+		{
+			i++;
+		}
+	}
+	return (j);
+}
