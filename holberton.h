@@ -11,6 +11,7 @@ typedef struct options {
 
 int _printf(const char *format, ...);
 int _strlen(char *s);
+int _strlen_esp(const char *s);
 int funt_string(char *s);
 int funt_char(char *c);
 

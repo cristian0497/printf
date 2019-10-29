@@ -18,6 +18,7 @@ int funt_string(char *s)
 int _printf(const char *format, ...)
 {
 	int cont, x;
+	char st;
 	int (*f)(char *);
 	va_list mylist;
 	type_data opts[] = {
@@ -39,5 +40,12 @@ int _printf(const char *format, ...)
 					f(va_arg(mylist, char *));
 				}
 			}
-);
+		}
+		if (format[cont] != '%')
+		{
+			st = format[cont];
+			write(1, &st, 1);
+		}
+	}
+	return (0);
 }
