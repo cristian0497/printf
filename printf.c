@@ -1,20 +1,11 @@
 #include "holberton.h"
 
-int funt_char(char *c)
-{
-	return (write(1, &c, 1));
-}
-
-int funt_string(char *s)
-{
-
-	int len;
-
-	len = _strlen(s);
-	write(1, s, len + 1);
-	return (len);
-}
-
+/**
+* _printf - prints anything like printf function
+* @format: format: %c, %s or %i
+*
+* Return: nothing.
+**/
 int _printf(const char *format, ...)
 {
 	int cont, x, arg_len, w;
@@ -22,8 +13,8 @@ int _printf(const char *format, ...)
 	int (*f)(char *);
 	va_list mylist;
 	type_data opts[] = {
-		{'c', funt_char},
-		{'s', funt_string},
+		{'c', write_char},
+		{'s', write_string},
 		{0, 0}
 	};
 
