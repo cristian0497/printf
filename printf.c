@@ -1,12 +1,10 @@
 #include "holberton.h"
-#include <stdarg.h>
-#include <unistd.h>
-/////////////////////////////////////////////////////
+
 int funt_char(char *c)
 {
 	return (write(1, &c, 1));
 }
-/////////////////////////////////////////////////////
+
 int funt_string(char *s)
 {
 
@@ -16,43 +14,30 @@ int funt_string(char *s)
 	write(1, s, len + 1);
 	return (len);
 }
-/////////////////////////////////////////////////////
-int _strlen(char *s)
-{
-	int contchar = 0;
 
-	while (s[contchar] != 00)
-	{
-		contchar++;
-	}
-	return (contchar);
-}
-////////////////////////////////////////////////////
 int _printf(const char *format, ...)
 {
-	int cont;
+	int cont, x;
+	int (*f)(char *);
 	va_list mylist;
-	char *c;
+	type_data opts[] = {
+		{'c', funt_char},
+		{'s', funt_string},
+		{0, 0}
+	};
 
 	va_start(mylist, format);
-	for (cont = 0; format[cont] != '\0'; cont++) /* recorro format string */
+	for (cont = 0; format[cont] != '\0'; cont++)
 	{
-
 		if (format[cont] == '%' && format[cont - 1] != '\\')
 		{
-			if (format[cont + 1] == 'c')
+			for (x = 0; opts[x].sel != 0; x++)
 			{
-				c = va_arg(mylist, char *);
-				funt_char(c);
+				if (opts[x].sel == format[cont + 1])
+				{
+					f = opts[x].f;
+					f(va_arg(mylist, char *));
+				}
 			}
-			if (format[cont + 1] == 's')
-			{
-				c = va_arg(mylist, char *);
-				funt_string(c);
-
-			}
-		}
-	}
-	return (1);
-
+);
 }

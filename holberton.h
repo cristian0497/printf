@@ -1,11 +1,13 @@
 #ifndef _HOLBERTON_H_
 #define _HOLBERTON_H_
-/*
-typedef struct options
-{
-	char *sel;
-	char *op_selected
-	} type_data; */
+#include <stdarg.h>
+#include <unistd.h>
+
+typedef struct options {
+	char sel;
+	int (*f)(char *c);
+}type_data;
+
 
 int _printf(const char *format, ...);
 int _strlen(char *s);
