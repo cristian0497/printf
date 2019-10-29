@@ -18,6 +18,8 @@ int _printf(const char *format, ...)
 		{0, 0}
 	};
 
+	if (!format)
+		return (-1);
 	va_start(mylist, format);
 	arg_len = _strlen_esp(format);
 	for (cont = 0; cont < arg_len; cont++)
