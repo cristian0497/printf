@@ -17,7 +17,7 @@ int funt_string(char *s)
 
 int _printf(const char *format, ...)
 {
-	int cont, x;
+	int cont, x, arg_len, w;
 	char st;
 	int (*f)(char *);
 	va_list mylist;
@@ -28,7 +28,8 @@ int _printf(const char *format, ...)
 	};
 
 	va_start(mylist, format);
-	for (cont = 0; format[cont] != '\0'; cont++)
+	arg_len = _strlen_esp(format);
+	for (cont = 0; cont < arg_len; cont++)
 	{
 		if (format[cont] == '%' && format[cont - 1] != '\\')
 		{
@@ -38,6 +39,7 @@ int _printf(const char *format, ...)
 				{
 					f = opts[x].f;
 					f(va_arg(mylist, char *));
+					cont += 2;
 				}
 			}
 		}
@@ -45,6 +47,11 @@ int _printf(const char *format, ...)
 		{
 			st = format[cont];
 			write(1, &st, 1);
+		}
+		if (format[cont] == '\\' && format[cont + 1] == 'n')
+		{
+			w = 10;
+			write(1, &w, 1);
 		}
 	}
 	return (0);
