@@ -1,58 +1,33 @@
 #include "holberton.h"
-#include <stdarg.h>
-#include <unistd.h>
-/////////////////////////////////////////////////////
-int funt_char(char *c)
-{
-	return (write(1, &c, 1));
-}
-/////////////////////////////////////////////////////
-int funt_string(char *s)
-{
-
-	int len;
-
-	len = _strlen(s);
-	write(1, s, len + 1);
-	return (len);
-}
-/////////////////////////////////////////////////////
-int _strlen(char *s)
-{
-	int contchar = 0;
-
-	while (s[contchar] != 00)
-	{
-		contchar++;
-	}
-	return (contchar);
-}
-////////////////////////////////////////////////////
+/**
+* _printf - prints anything like printf function
+* @format: format: %c, %s or %i
+*
+* Return: nothing.
+**/
 int _printf(const char *format, ...)
 {
-	int cont;
-	va_list mylist;
+	int i;
 	char *c;
+	va_list mylist;
 
 	va_start(mylist, format);
-	for (cont = 0; format[cont] != '\0'; cont++) /* recorro format string */
+
+	for (i = 0; format[i] != 00; i++)
 	{
-
-		if (format[cont] == '%' && format[cont - 1] != '\\')
+		if (format[i] == '%' && format[i - 1] != '\\')
 		{
-			if (format[cont + 1] == 'c')
+			if (format[i + 1] == 'c')
 			{
 				c = va_arg(mylist, char *);
-				funt_char(c);
+				write_char(c);
 			}
-			if (format[cont + 1] == 's')
+			if (format[i + 1] == 's')
 			{
 				c = va_arg(mylist, char *);
-				funt_string(c);
-
+				write_string(c);
 			}
 		}
 	}
-	return (1);
-
+	return (0);
 }
