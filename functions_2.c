@@ -1,10 +1,20 @@
 #include "holberton.h"
-
+/**
+* write_int - write an int using write sys call
+* @n: passed int
+*
+* Return: write integer
+**/
 void write_int(char *n)
 {
 	write(1, n, 4);
 }
-
+/**
+* write_dec - write an dec using write sys call
+* @n: passed dec
+*
+* Return: write decimal
+**/
 void write_dec(char *n)
 {
 	write(1, n, 4);
