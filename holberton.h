@@ -22,5 +22,4 @@ void write_string(char *s);
 void write_char(char *c);
 void write_int(char *s);
 void write_dec(char *s);
-
 #endif
