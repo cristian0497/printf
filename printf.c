@@ -1,5 +1,4 @@
 #include "holberton.h"
-
 /**
 * _printf - prints anything like printf function
 * @format: format: %c, %s or %i

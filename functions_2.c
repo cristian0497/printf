@@ -18,7 +18,6 @@ void write_char(char *c)
 {
 	write(1, &c, 1);
 }
-
 /**
 * write_string - prints an string
 * @s: passed string

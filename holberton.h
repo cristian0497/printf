@@ -3,7 +3,6 @@
 #include <stdarg.h>
 #include <unistd.h>
 #include <stdlib.h>
-
 /**
  * struct options - struct main
  * @sel: char of selection
