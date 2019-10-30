@@ -4,7 +4,7 @@
  * @s: string
  * Return: contchar
  */
-int _strlen(char *s) // 1
+int _strlen(char *s)
 {
 	int contchar = 0;
 
@@ -14,14 +14,13 @@ int _strlen(char *s) // 1
 	}
 	return (contchar);
 }
-
 /**
 * _strlen_esp - show what's the char that contains %
 * @s: passed string
 *
 * Return: char that contains '%'
 **/
-int _strlen_esp(const char *s) //2
+int _strlen_esp(const char *s)
 {
 	int cont;
 
@@ -29,29 +28,35 @@ int _strlen_esp(const char *s) //2
 	{}
 	return (cont);
 }
-
+/**
+* convert - functions convert integer to string to be able
+* to print it with write
+* @num: passed number
+* @base: base
+*
+* Return: string
+*/
 char *convert(int num, int base)
 {
-    static char string[] = "0123456789ABCDEF";
-    static char buffer[50];
-    char *ptr;
-    int sign = 0;
+	static const char string[] = "0123456789ABCDEF";
+	static const char buffer[50];
+	char *ptr;
+	int sign = 0;
 
-    ptr = &buffer[49];
-    *ptr = '\0';
-    if (num < 0)
-      {
-        num = (num * (-1));
-        sign = 1;
-      }
-    do {
-        *--ptr = string[num % base];
-        num /= base;
-    } while (num != 0);
-    if (sign == 1)
-    {
-      *--ptr = '-';
-    }
-    return (ptr);
+	ptr = &buffer[49];
+	*ptr = '\0';
+	if (num < 0)
+	{
+		num = (num * (-1));
+		sign = 1;
+	}
+	do {
+		*--ptr = string[num % base];
+		num /= base;
+	} while (num != 0);
+	if (sign == 1)
+	{
+		*--ptr = '-';
+	}
+	return (ptr);
 }
-
