@@ -1,11 +1,10 @@
 #include "holberton.h"
-
 /**
- * _strlen - funtion obtain strlen
+ * _strlen - funtion obtain strlen #1
  * @s: string
  * Return: contchar
  */
-int _strlen(char *s)
+int _strlen(char *s) // 1
 {
 	int contchar = 0;
 
@@ -22,7 +21,7 @@ int _strlen(char *s)
 *
 * Return: char that contains '%'
 **/
-int _strlen_esp(const char *s)
+int _strlen_esp(const char *s) //2
 {
 	int cont;
 
@@ -31,27 +30,27 @@ int _strlen_esp(const char *s)
 	return (cont);
 }
 
-/**
-* write_char - prints a char
-* @c: passed char
-* Return: write the passed char
-**/
-int write_char(char *c)
+char *convert(int num, int base)
 {
-	return (write(1, &c, 1));
-}
+    static char string[] = "0123456789ABCDEF";
+    static char buffer[50];
+    char *ptr;
+    int sign = 0;
 
-/**
-* write_string - prints an string
-* @s: passed string
-* Return: write the passed string
-**/
-int write_string(char *s)
-{
-
-	int len;
-
-	len = _strlen(s);
-	write(1, s, len);
-	return (len);
+    ptr = &buffer[49];
+    *ptr = '\0';
+    if (num < 0)
+      {
+        num = (num * (-1));
+        sign = 1;
+      }
+    do {
+        *--ptr = string[num % base];
+        num /= base;
+    } while (num != 0);
+    if (sign == 1)
+    {
+      *--ptr = '-';
+    }
+    return (ptr);
 }

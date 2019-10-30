@@ -1,4 +1,5 @@
 #include "holberton.h"
+
 /**
 * _printf - prints anything like printf function
 * @format: format: %c, %s or %i
@@ -8,19 +9,23 @@
 int _printf(const char *format, ...)
 {
 	int cont, x, arg_len, w;
+	int nume;
 	char st;
-	int (*f)(char *);
+	void (*f)(char *);
 	va_list mylist;
+	char *int_char;
 	type_data opts[] = {
-		{'c', write_char},
-		{'s', write_string},
+		{'c', write_char}, {'s', write_string},
+		{'i', write_int}, {'d', write_dec},
 		{0, 0}
 	};
 
 	if (!format)
 		return (-1);
+
 	va_start(mylist, format);
 	arg_len = _strlen_esp(format);
+
 	for (cont = 0; cont < arg_len; cont++)
 	{
 		if (format[cont] == '%' && format[cont - 1] != '\\')
@@ -30,8 +35,19 @@ int _printf(const char *format, ...)
 				if (opts[x].sel == format[cont + 1])
 				{
 					f = opts[x].f;
-					f(va_arg(mylist, char *));
-					cont += 2;
+					if (opts[x].sel == 'i' || opts[x].sel == 'd')
+					{
+						nume = va_arg(mylist, int);
+						int_char = convert(nume, 10);
+						f(int_char);
+						cont += 2;
+					}
+					else
+					{
+						f(va_arg(mylist, char *));
+						cont += 2;
+						break;
+					}
 				}
 			}
 		}
@@ -46,5 +62,6 @@ int _printf(const char *format, ...)
 			write(1, &w, 1);
 		}
 	}
-	return (0);
+	va_end(mylist);
+	return (arg_len);
 }
