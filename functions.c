@@ -25,7 +25,7 @@ int _strlen_esp(const char *s)
 	int cont;
 
 	for (cont = 0; s[cont] != 00; cont++)
-	{}
+	  ;
 	return (cont);
 }
 /**
@@ -39,7 +39,7 @@ int _strlen_esp(const char *s)
 char *convert(int num, int base)
 {
 	static const char string[] = "0123456789ABCDEF";
-	static const char buffer[50];
+	char buffer[50];
 	char *ptr;
 	int sign = 0;
 
