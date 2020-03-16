@@ -16,7 +16,7 @@ int _printf(const char *format, ...)
 	type_data opts[] = {
 		{'c', write_char}, {'s', write_string},
 		{'i', write_int}, {'d', write_dec},
-		{0, 0}
+		{'\n', NULL}
 	};
 
 	if (!format)
