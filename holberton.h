@@ -11,15 +11,13 @@
 typedef struct options
 {
 	char sel;
-	void (*f)();
+	char *(*f)();
 } type_data;
 
 int _printf(const char *format, ...);
-int _strlen(char *s);
 int _strlen_esp(const char *s);
-char *convert(int num, int base);
-void write_string(char *s);
-void write_char(char *c);
-void write_int(char *s);
-void write_dec(char *s);
+int _free(char *buf);
+int optcheck(char opt, char *buf, va_list mylist, type_data *opts, int copts, int cbuf);
+char *write_char(int c);
+char *write_string(char *n);
 #endif

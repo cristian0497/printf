@@ -25,38 +25,50 @@ int _strlen_esp(const char *s)
 	int cont;
 
 	for (cont = 0; s[cont] != 00; cont++)
-	  ;
+		;
 	return (cont);
 }
 /**
-* convert - functions convert integer to string to be able
-* to print it with write
-* @num: passed number
-* @base: base
-*
-* Return: string
-*/
-char *convert(int num, int base)
+ * _free - free spaces allocated by malloc
+ * @buf: pointer to free allocate
+ * Return: Error Code
+ */
+int _free(char *buf)
 {
-	static const char string[] = "0123456789ABCDEF";
-	char buffer[50];
-	char *ptr;
-	int sign = 0;
+	free(buf);
+	return (-1);
+}
+/**
+ * optcheck - check the option of the % command
+ * @opt: the option selectec, "ie c, s, i, d"...
+ * @buf: buffer to add format opt
+ * @mylist: arguments to use to print
+ * @opts: struc with options and their function pointer
+ * @copts: idx of options
+ * @cbuf: idx of buffer
+ * Return: count of chars added to buffer
+ */
+int optcheck(char opt, char *buf, va_list mylist,
+	     type_data *opts, int copts, int cbuf)
+{
+	char *st;
+	int x = 0;
 
-	ptr = &buffer[49];
-	*ptr = '\0';
-	if (num < 0)
+	if (opt == 'c')
 	{
-		num = (num * (-1));
-		sign = 1;
+		st = opts[copts].f(va_arg(mylist, int));
+		while (st[x])
+			buf[cbuf] = st[x], x++, cbuf++;
+		return (cbuf);
 	}
-	do {
-		*--ptr = string[num % base];
-		num /= base;
-	} while (num != 0);
-	if (sign == 1)
+	if (opt == 's')
 	{
-		*--ptr = '-';
+		st = opts[copts].f(va_arg(mylist, char *));
+		while (st[x])
+			buf[cbuf] = st[x], x++, cbuf++;
+		return (cbuf);
+
 	}
-	return (ptr);
+	else
+		return (0);
 }

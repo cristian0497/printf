@@ -4,63 +4,43 @@
 * @format: format: %c, %s or %i
 * Return: nothing.
 **/
-
 int _printf(const char *format, ...)
 {
-	int cont, x, arg_len, w;
-	int nume;
-	char st;
-	void (*f)(char *);
+	int arg_len, cformat, cbuf, copts;
 	va_list mylist;
-	char *int_char;
-	type_data opts[] = {
-		{'c', write_char}, {'s', write_string},
-		{'i', write_int}, {'d', write_dec},
-		{'\n', NULL}
-	};
+	char *buf;
+	type_data opts[] = { {'c', write_char}, {'s', write_string}, {'\0', NULL} };
 
 	if (!format)
 		return (-1);
-
-	va_start(mylist, format);
-	arg_len = _strlen_esp(format);
-
-	for (cont = 0; cont < arg_len; cont++)
+	va_start(mylist, format), arg_len = _strlen_esp(format);
+	buf = malloc(sizeof(char) * 1024);
+	if (!buf)
+		return (_free(buf));
+	for (cformat = 0, cbuf = 0, copts = 0; cformat < arg_len; cformat++)
 	{
-		if (format[cont] == '%' && format[cont - 1] != '\\')
+		if (format[cformat] == '%')
 		{
-			for (x = 0; opts[x].sel != 0; x++)
+			while (opts[copts].sel)
 			{
-				if (opts[x].sel == format[cont + 1])
+				if (format[cformat + 1] == '%')
 				{
-					f = opts[x].f;
-					if (opts[x].sel == 'i' || opts[x].sel == 'd')
-					{
-						nume = va_arg(mylist, int);
-						int_char = convert(nume, 10);
-						f(int_char);
-						cont += 2;
-					}
-					else
-					{
-						f(va_arg(mylist, char *));
-						cont += 2;
-						break;
-					}
+					buf[cbuf] = format[cformat], cbuf++, cformat++;
+					break;
 				}
+				if (format[cformat + 1] == opts[copts].sel)
+				{
+					cformat++;
+					cbuf += optcheck(format[cformat], buf, mylist, opts, copts, cbuf);
+					break;
+				}
+				copts++;
 			}
 		}
-		if (format[cont] != '%')
-		{
-			st = format[cont];
-			write(1, &st, 1);
-		}
-		if (format[cont] == '\\' && format[cont + 1] == 'n')
-		{
-			w = 10;
-			write(1, &w, 1);
-		}
+		else
+			buf[cbuf] = format[cformat], cbuf++;
 	}
-	va_end(mylist);
-	return (arg_len);
+	write(1, buf, cbuf);
+	va_end(mylist), free(buf);
+	return (cbuf);
 }
