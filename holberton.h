@@ -13,7 +13,7 @@ typedef struct options
 	char sel;
 	char *(*f)();
 } type_data;
-
+void clean_buf(char *buf);
 int _printf(const char *format, ...);
 int _strlen_esp(const char *s);
 int _free(char *buf);

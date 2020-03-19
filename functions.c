@@ -51,24 +51,42 @@ int _free(char *buf)
 int optcheck(char opt, char *buf, va_list mylist,
 	     type_data *opts, int copts, int cbuf)
 {
-	char *st;
+	char *st, *st_null = "(null)";
 	int x = 0;
 
 	if (opt == 'c')
 	{
 		st = opts[copts].f(va_arg(mylist, int));
-		while (st[x])
+		while (st[x] != '\0')
 			buf[cbuf] = st[x], x++, cbuf++;
-		return (cbuf);
+		return (x);
 	}
 	if (opt == 's')
 	{
 		st = opts[copts].f(va_arg(mylist, char *));
+		if (!st)
+		{
+			while (st_null[x])
+				buf[cbuf] = st_null[x], x++, cbuf++;
+			return (x);
+		}
 		while (st[x])
 			buf[cbuf] = st[x], x++, cbuf++;
-		return (cbuf);
+		return (x);
 
 	}
 	else
 		return (0);
+}
+/**
+ * clean_buf - clean the buf to overwrite
+ * @buf: buf to clean
+ */
+void clean_buf(char *buf)
+{
+	char *tmp = buf;
+	int x = 0;
+
+	while (tmp[x])
+		tmp[x] = '\0';
 }
