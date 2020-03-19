@@ -21,6 +21,7 @@ int _printf(const char *format, ...)
 	{
 		if (format[cformat] == '%')
 		{
+			copts = 0;
 			while (opts[copts].sel)
 			{
 				if (format[cformat + 1] == '%')
