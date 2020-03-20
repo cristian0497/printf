@@ -75,7 +75,7 @@ int optcheck(char opt, char *buf, va_list mylist,
 		return (x);
 
 	}
-	if (opt == 'd' || opt == 'i')
+	if (opt == 'd' || opt == 'i' || opt == 'b')
 	{
 		st = opts[copts].f(va_arg(mylist, int));
 		while (st[x])

@@ -35,6 +35,15 @@ char *write_decimal(int d)
 	return (st);
 }
 /**
+ * write_binary - print a binary in buffer
+ * @n: int value to convert
+ * Return: string with binary representation
+ */
+char *write_binary(int n)
+{
+	return (_itoa(n, 2));
+}
+/**
  * _itoa - int value to string
  * @num: num to return in string format
  * @base: base to convert num;

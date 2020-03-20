@@ -21,5 +21,6 @@ int optcheck(char opt, char *buf, va_list mylist, type_data *opts, int copts, in
 char *write_char(int c);
 char *write_string(char *n);
 char *write_decimal(int d);
+char *write_binary(int d);
 char *_itoa(int i, int base);
 #endif
