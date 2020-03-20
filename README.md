@@ -1,52 +1,52 @@
-# printf (Hbtn)
+# _printf function (Hbtn)
 
-printf is a project developed by Holberton School students.
+printf is a project developed by Holberton School student, it consist in our own
+ptintf functions with the same properties.
 
 ## Installation
 
 Clone the [repository](https://github.com/cristian0497/printf.git)
 
-```bash
+Bash
+```
 git clone https://github.com/cristian0497/printf.git
 ```
+Compile
+...
+gcc -Wall -Werror -Wextra -pedantic *.c
+...
 
 ## Import header
-Import holberton.h file in your main.c
-```c
+Import holberton.h file in your main.c (located in test folder)
+```
 #include "holberton.h"
 ```
-Now you can use our printf!
+Now you can use our printf! 
 
 ## Usage
 The syntax it's similar to printf function in C programming language
 
 Print character
 ```
-printf("%c", 'A');
+_printf("%c", 'A');
 ```
 
 Print string
 ```
-printf("%s", 'loap');
+_printf("%s", 'loap');
 ```
 
 Print decimal
 ```
-printf("%d", 23);
+_printf("%d", 23);
 ```
 
 You also can print ASCII characters
 ```
-printf("%c", 71);
+_printf("%c", 71);
 ```
 
 ## Authors
 
-Gabriel Montaño, Cristian Hurtado
-
-
-## Bugs
-Did you find a bug? Feel free to email us with your report
-
-* Gabriel Montaño - 1245@holbertonschool.com
 * Cristian Hurtado - 1185@holbertonschool.com
+Software engineer - holberton School.
