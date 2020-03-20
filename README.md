@@ -11,6 +11,7 @@ Bash
 ```
 git clone https://github.com/cristian0497/printf.git
 ```
+
 Compile
 ...
 gcc -Wall -Werror -Wextra -pedantic *.c
@@ -48,5 +49,5 @@ _printf("%c", 71);
 
 ## Authors
 
-* Cristian Hurtado - 1185@holbertonschool.com
-Software engineer - holberton School.
+* Cristian Hurtado Diaz - 1185@holbertonschool.com
+FullStack Software engineer - holberton School.
