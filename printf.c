@@ -9,7 +9,9 @@ int _printf(const char *format, ...)
 	int arg_len, cformat, cbuf, copts;
 	va_list mylist;
 	char *buf;
-	type_data opts[] = { {'c', write_char}, {'s', write_string}, {'\0', NULL} };
+	type_data opts[] = { {'c', write_char}, {'s', write_string},
+			     {'d', write_decimal}, {'i', write_decimal},
+			     {'\0', NULL} };
 
 	if (!format)
 		return (-1);
