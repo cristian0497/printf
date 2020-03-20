@@ -20,4 +20,6 @@ int _free(char *buf);
 int optcheck(char opt, char *buf, va_list mylist, type_data *opts, int copts, int cbuf);
 char *write_char(int c);
 char *write_string(char *n);
+char *write_decimal(int d);
+char *_itoa(int i, int base);
 #endif
