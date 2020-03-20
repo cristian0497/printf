@@ -11,18 +11,16 @@ Bash
 ```
 git clone https://github.com/cristian0497/printf.git
 ```
-
 Compile
-...
+```
 gcc -Wall -Werror -Wextra -pedantic *.c
-...
-
+```
 ## Import header
 Import holberton.h file in your main.c (located in test folder)
 ```
 #include "holberton.h"
 ```
-Now you can use our printf! 
+Now you can use our printf!
 
 ## Usage
 The syntax it's similar to printf function in C programming language
